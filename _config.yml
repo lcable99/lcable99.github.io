@@ -4,3 +4,5 @@ plugins:
 
 title: [./logan]
 description: [A place for my code, circuits, and math]
+
+theme: jekyll-theme-hacker

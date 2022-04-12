@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/css/ol.css" type="text/css">
+    <style>
+      .map {
+        height: 400px;
+        width: 100%;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
+    <title>OpenLayers example</title>
+  </head>
+  <body>
+    <h2>My Map</h2>
+    <div id="map" class="map"></div>
+    <script type="text/javascript">
+      //sytles
+      var style1 = new ol.style.Style({
+      image: new ol.style.Circle({
+        radius: 10,
+        fill: new ol.style.Fill({color: 'red'}),
+        stroke: new ol.style.Stroke({
+          color: [255,0,0], width: 2
+        })
+      })
+    });
+
+    var style2 = new ol.style.Style({
+      image: new ol.style.Circle({
+        radius: 20,
+        fill: new ol.style.Fill({color: 'blue'}),
+        stroke: new ol.style.Stroke({
+          color: [20,40,80], width: 2
+        })
+      })
+    });
+
+    var style3 = new ol.style.Style({
+      image: new ol.style.Circle({
+        radius: 5,
+        fill: new ol.style.Fill({color: 'black'}),
+        stroke: new ol.style.Stroke({
+          color: [0,0,0], width: 2
+        })
+      })
+    });
+
+      var map = new ol.Map({
+        target: 'map',
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        view: new ol.View({
+          center: ol.proj.fromLonLat([-120.670375, 35.272506]),
+          zoom: 6
+        })
+      });
+
+      //San Jose
+      var layer = new ol.layer.Vector({
+      source: new ol.source.Vector({
+         features: [
+             new ol.Feature({
+                 geometry: new ol.geom.Point(ol.proj.fromLonLat([-121.817413, 37.297058]))
+             })
+         ]
+      }),
+      style: style1
+      });
+      map.addLayer(layer);
+
+      //Los Angeles
+      var layer = new ol.layer.Vector({
+      source: new ol.source.Vector({
+         features: [
+             new ol.Feature({
+                 geometry: new ol.geom.Point(ol.proj.fromLonLat([-118.411741, 34.021055]))
+             })
+         ]
+      }),
+      style: style2
+      });
+      map.addLayer(layer);
+
+      //Bakersfield
+      var layer = new ol.layer.Vector({
+      source: new ol.source.Vector({
+         features: [
+             new ol.Feature({
+                 geometry: new ol.geom.Point(ol.proj.fromLonLat([-119.018687, 35.321077]))
+             })
+         ]
+      }),
+      style: style3
+      });
+      map.addLayer(layer);
+      
+    </script>
+  </body>
+</html>
